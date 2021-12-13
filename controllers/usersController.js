@@ -30,6 +30,7 @@ const usersController = {
   },
 
   processLogin: (req, res) => {
+    //return res.send(req.body)
     db.User.findOne({ where: { email: req.body.email } })
       .then((user) => {
         if (user) {
@@ -38,7 +39,8 @@ const usersController = {
             delete userData.password;
             req.session.user = userData;
             console.log();
-            if (req.body.token) {
+            //en un checkbox al no llegarle el dato nunca viaja
+            if(req.body.token == "on") {
               const token = crypto.randomBytes(64).toString("base64");
               user
                 .update({ remember_token: token })
@@ -52,6 +54,7 @@ const usersController = {
                   return res.redirect(error);
                 });
             }
+            return res.redirect("/");
           } else {
             return res.render("login", {
               errors: {

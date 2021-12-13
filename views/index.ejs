@@ -23,7 +23,7 @@
         <div>
           <% if (locals.user.rol === 1) { %> 
           <h1>Administrador: <%= locals.user.name %></h1>
-          <h1>Permisos completos para crear, modificar y borrar películas</h1>
+          <h1>Permisos: crear, modificar y borrar películas</h1>
           <% } else { %>
             <h1>Usuario: <%= locals.user.name %></h1>
             <h1>Permisos: solo lectura</h1>
